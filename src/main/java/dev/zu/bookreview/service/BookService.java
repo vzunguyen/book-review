@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class BookService {
+    private final BookRepository bookRepository;
+
     @Autowired
-    private BookRepository bookRepository;
+    public BookService (BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     // GET all Books
     public List<Book> getAllBooks() {
@@ -30,8 +34,14 @@ public class BookService {
         return bookRepository.findByTitle(title);
     }
 
-    // Save Book
-    public Book saveBook(Book book) {
+    // Add Book
+    public Book saveBook(String title, String author, String genre) {
+        Book book = new Book();
+
+        book.setTitle(title);
+        book.setAuthor(author);
+        book.setGenre(genre);
+
         return bookRepository.save(book);
     }
 

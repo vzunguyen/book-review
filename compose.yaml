@@ -3,8 +3,7 @@ services:
     image: 'mysql:latest'
     environment:
       - 'MYSQL_DATABASE=book_review'
-      - 'MYSQL_PASSWORD=fcKd6aJS8A'
-      - 'MYSQL_ROOT_PASSWORD=07102004'
-      - 'MYSQL_USER=root'
+      - 'MYSQL_PASSWORD=07102004'
+      - 'MYSQL_ROOT_PASSWORD=password'
     ports:
       - '3306'

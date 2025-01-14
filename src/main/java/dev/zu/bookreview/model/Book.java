@@ -30,6 +30,7 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)  // "book" is the field in the Review class
     private List<Review> reviews;  // List of reviews
 
+
     // Getters and Setters
 
     // ID

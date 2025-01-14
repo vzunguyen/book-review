@@ -1,4 +1,4 @@
-package dev.zu.model;
+package dev.zu.bookreview.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

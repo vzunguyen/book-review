@@ -1,25 +1,29 @@
-package dev.zu.bookreview.entity;
+package dev.zu.bookreview.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import Book;
+import jakarta.persistence.*;
+import dev.zu.bookreview.model.Book;
 
+@Entity
+@Table(name = "review")
 public class Review {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+    @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "book_id")  // Foreign key column in the Review table
+    @ManyToOne  // Each review is associated with one book
+    @JoinColumn(name = "book_id")  // This creates a foreign key in the review table to reference the book
     private Book book;
 
+    @Column(name = "reviewer")
     private String reviewer;
+
+    @Column(name = "rating")
     private Integer rating;
+
+    @Column(name = "content")
     private String content;
 
     // Getters and Setters

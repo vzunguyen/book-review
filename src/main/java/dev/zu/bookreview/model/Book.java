@@ -1,21 +1,34 @@
-package dev.zu.bookreview.entity;
+package dev.zu.bookreview.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import dev.zu.bookreview.model.Review;
+
+import java.util.List;
+
+// Annotations in Java are a form of metadata that provide additional information about the program,
+// but they do not affect the actual execution of the code. They are used to instruct the compiler,
+// provide information to frameworks, or indicate runtime behavior.
 
 @Entity
+@Table(name = "book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "author")
     private String author;
+
+    @Column(name = "genre")
     private String genre;
 
-    @OneToOne(mappedBy = "book")  // Reference to the 'book' field in Review
-    private Review review;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)  // "book" is the field in the Review class
+    private List<Review> reviews;  // List of reviews
 
     // Getters and Setters
 
@@ -52,11 +65,10 @@ public class Book {
     }
 
     // Review
-
-    public Review getReview() {
-        return review;
+    public List<Review> getReviews() {
+        return reviews;
     }
-    public void setReview(Review review) {
-        this.review = review;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

@@ -1,5 +1,6 @@
 package dev.zu.bookreview.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import dev.zu.bookreview.model.Book;
 
@@ -14,7 +15,7 @@ public class Review {
     private Long id;
 
     @ManyToOne  // Each review is associated with one book
-    @JoinColumn(name = "book_id")  // This creates a foreign key in the review table to reference the book
+    @JoinColumn(name = "book_id")
     private Book book;
 
     @Column(name = "reviewer")

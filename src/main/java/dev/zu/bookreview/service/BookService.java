@@ -3,7 +3,6 @@ package dev.zu.bookreview.service;
 import dev.zu.bookreview.model.Book;
 import dev.zu.bookreview.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +18,10 @@ public class BookService {
 
     // GET all Books
     public List<Book> getAllBooks() {
+        if (bookRepository.findAll().isEmpty()) {
+            // Not Found Response
+            return null;
+        }
         return bookRepository.findAll();
     }
     // CrudRepository findAll() returns Iterable<T>

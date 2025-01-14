@@ -1,5 +1,6 @@
 package dev.zu.bookreview.repository;
 
+import dev.zu.bookreview.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import dev.zu.bookreview.model.Review;
 import org.springframework.data.jpa.repository.Query;

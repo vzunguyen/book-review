@@ -1,8 +1,7 @@
 package dev.zu.bookreview.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import dev.zu.bookreview.model.Review;
-
 import java.util.List;
 
 // Annotations in Java are a form of metadata that provide additional information about the program,
@@ -13,6 +12,7 @@ import java.util.List;
 @Table(name = "book")
 public class Book {
     @Id
+    // UUID.randomUUID().toString()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id")
@@ -27,7 +27,7 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)  // "book" is the field in the Review class
+    @OneToMany(mappedBy = "book")  // "book" is the field in the Review class
     private List<Review> reviews;  // List of reviews
 
 
@@ -66,6 +66,7 @@ public class Book {
     }
 
     // Review
+    @JsonIgnore
     public List<Review> getReviews() {
         return reviews;
     }
